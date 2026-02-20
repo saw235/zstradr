@@ -1,0 +1,46 @@
+cabal-version: 3.0
+name:          zstradr-backtest
+version:       0.1.0.0
+synopsis:      Backtesting simulation engine for ZStradr
+description:   Event-driven backtesting engine for algorithmic trading strategies.
+license:       MIT
+author:        saw235
+maintainer:    saw235
+category:      Finance
+build-type:    Simple
+
+common common-options
+  default-language:   Haskell2010
+  ghc-options:        -Wall -Wno-unused-do-bind
+  default-extensions:
+    OverloadedStrings
+    LambdaCase
+    DeriveGeneric
+    DeriveAnyClass
+    TupleSections
+
+library
+  import:          common-options
+  hs-source-dirs:  src
+  exposed-modules:
+    ZStradr.Backtest.Engine
+  build-depends:
+    base          >= 4.14 && < 5,
+    zstradr-core,
+    aeson         >= 2.0,
+    containers    >= 0.6,
+    vector        >= 0.12,
+    time          >= 1.9,
+    text          >= 1.2,
+    bytestring    >= 0.10,
+    mtl           >= 2.2
+
+test-suite zstradr-backtest-test
+  import:         common-options
+  type:           exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is:        Spec.hs
+  build-depends:
+    base          >= 4.14 && < 5,
+    zstradr-backtest,
+    hspec         >= 2.8
