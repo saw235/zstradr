@@ -1,0 +1,47 @@
+cabal-version: 3.0
+name:          zstradr-core
+version:       0.1.0
+synopsis:      Core domain types for ZStradr trading framework
+description:   Fundamental types: OHLCV bars, orders, positions, portfolio, trades.
+license:       MIT
+license-file:  LICENSE
+author:        ZStradr Contributors
+maintainer:    zstradr@example.com
+category:      Finance
+build-type:    Simple
+
+library
+  hs-source-dirs:   src
+  exposed-modules:
+    ZStradr.Core.Types
+  build-depends:
+      base       >= 4.14 && < 5
+    , aeson      >= 2.0
+    , containers >= 0.6
+    , deepseq    >= 1.4
+    , text       >= 1.2
+    , time       >= 1.9
+    , vector     >= 0.12
+  default-language:   Haskell2010
+  default-extensions:
+    DeriveAnyClass
+    DeriveGeneric
+    OverloadedStrings
+    RecordWildCards
+    TupleSections
+  ghc-options: -Wall -Wcompat -Widentities -Wredundant-constraints
+
+test-suite zstradr-core-tests
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Spec.hs
+  other-modules:
+    ZStradr.Core.TypesSpec
+  build-depends:
+      base
+    , zstradr-core
+    , aeson      >= 2.0
+    , hspec      >= 2.7
+    , text       >= 1.2
+  default-language: Haskell2010
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N

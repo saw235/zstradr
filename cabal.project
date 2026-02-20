@@ -1,0 +1,5 @@
+packages:
+  zstradr-core/
+  zstradr-data/
+  zstradr-backtest/
+  zstradr-cli/

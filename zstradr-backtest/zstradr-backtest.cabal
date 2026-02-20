@@ -1,0 +1,42 @@
+cabal-version: 3.0
+name:          zstradr-backtest
+version:       0.1.0
+synopsis:      Backtesting engine for ZStradr trading framework
+description:   Event-driven backtesting loop, strategy interface, and performance metrics.
+license:       MIT
+license-file:  LICENSE
+author:        ZStradr Contributors
+maintainer:    zstradr@example.com
+category:      Finance
+build-type:    Simple
+
+library
+  hs-source-dirs:   src
+  exposed-modules:
+    ZStradr.Backtest.Engine
+  build-depends:
+      base           >= 4.14 && < 5
+    , zstradr-core
+    , zstradr-data
+    , containers     >= 0.6
+    , text           >= 1.2
+    , time           >= 1.9
+    , vector         >= 0.12
+  default-language:   Haskell2010
+  default-extensions:
+    DeriveAnyClass
+    DeriveGeneric
+    OverloadedStrings
+    RecordWildCards
+  ghc-options: -Wall -Wcompat -Widentities -Wredundant-constraints
+
+test-suite zstradr-backtest-tests
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Spec.hs
+  build-depends:
+      base
+    , zstradr-backtest
+    , hspec      >= 2.7
+  default-language: Haskell2010
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
