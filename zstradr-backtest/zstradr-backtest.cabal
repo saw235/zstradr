@@ -14,6 +14,12 @@ library
   hs-source-dirs:   src
   exposed-modules:
     ZStradr.Backtest.Engine
+    ZStradr.Backtest.Events
+    ZStradr.Backtest.Strategy
+    ZStradr.Backtest.Execution
+    ZStradr.Backtest.Portfolio
+    ZStradr.Backtest.Runner
+    ZStradr.Backtest.Strategies.BuyAndHold
   build-depends:
       base           >= 4.14 && < 5
     , zstradr-core
@@ -34,9 +40,15 @@ test-suite zstradr-backtest-tests
   type:             exitcode-stdio-1.0
   hs-source-dirs:   test
   main-is:          Spec.hs
+  other-modules:
+    ZStradr.Backtest.RunnerSpec
   build-depends:
       base
     , zstradr-backtest
-    , hspec      >= 2.7
+    , zstradr-core
+    , containers     >= 0.6
+    , hspec          >= 2.7
   default-language: Haskell2010
+  default-extensions:
+    OverloadedStrings
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
