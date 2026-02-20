@@ -7,7 +7,6 @@ module ZStradr.Backtest.Portfolio
   , totalEquity
   ) where
 
-import           Data.Map.Strict  (Map)
 import qualified Data.Map.Strict  as Map
 
 import ZStradr.Core.Types
