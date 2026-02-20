@@ -62,6 +62,23 @@ samplePortfolio = Portfolio
   , portRealizedPnL = 250.0
   }
 
+sampleExitFill :: Fill
+sampleExitFill = Fill
+  { fillOrderId    = OrderId "ord-002"
+  , fillPrice      = 190.0
+  , fillQty        = 10.0
+  , fillTimestamp  = sampleTime
+  , fillCommission = 1.0
+  }
+
+sampleTrade :: Trade
+sampleTrade = Trade
+  { tradeSymbol      = sampleSymbol
+  , tradeEntryFill   = sampleFill
+  , tradeExitFill    = sampleExitFill
+  , tradeRealizedPnL = 49.0
+  }
+
 -- | JSON roundtrip helper.
 roundtrip :: (Eq a, Show a, FromJSON a, ToJSON a) => a -> Bool
 roundtrip x = decode (encode x) == Just x
@@ -83,6 +100,9 @@ spec = do
 
     it "Portfolio" $
       roundtrip samplePortfolio `shouldBe` True
+
+    it "Trade" $
+      roundtrip sampleTrade `shouldBe` True
 
   describe "unrealizedPnL" $ do
     it "profit when price rises" $

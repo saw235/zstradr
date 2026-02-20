@@ -1,0 +1,69 @@
+cabal-version: 3.0
+name:          zstradr-data
+version:       0.1.0.0
+synopsis:      Market data ingestion for ZStradr (CSV and Yahoo Finance)
+description:   Market data ingestion layer for the ZStradr algorithmic trading
+               framework. Provides CSV loading and a Yahoo Finance HTTP adapter.
+license:       MIT
+author:        saw235
+maintainer:    saw235
+category:      Finance
+build-type:    Simple
+
+common common-options
+  default-language:   Haskell2010
+  ghc-options:        -Wall -Wno-unused-do-bind
+  default-extensions:
+    OverloadedStrings
+    LambdaCase
+    DeriveGeneric
+    DeriveAnyClass
+    TupleSections
+    NumericUnderscores
+
+library
+  import:          common-options
+  hs-source-dirs:  src
+  exposed-modules:
+    ZStradr.Data.MarketData
+    ZStradr.Data.CSV
+    ZStradr.Data.YahooFinance
+  build-depends:
+    base          >= 4.14 && < 5,
+    zstradr-core,
+    aeson         >= 2.0,
+    containers    >= 0.6,
+    text          >= 1.2,
+    bytestring    >= 0.10,
+    time          >= 1.9,
+    cassava       >= 0.5,
+    http-conduit  >= 2.3,
+    http-types    >= 0.12,
+    transformers  >= 0.5,
+    vector        >= 0.12
+
+test-suite zstradr-data-test
+  import:         common-options
+  type:           exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is:        Spec.hs
+  other-modules:
+    ZStradr.Data.CSVSpec
+  build-tool-depends:
+    hspec-discover:hspec-discover >= 2.8
+  build-depends:
+    base          >= 4.14 && < 5,
+    zstradr-data,
+    zstradr-core,
+    aeson         >= 2.0,
+    containers    >= 0.6,
+    text          >= 1.2,
+    bytestring    >= 0.10,
+    time          >= 1.9,
+    cassava       >= 0.5,
+    http-conduit  >= 2.3,
+    http-types    >= 0.12,
+    transformers  >= 0.5,
+    vector        >= 0.12,
+    hspec         >= 2.8,
+    temporary     >= 1.3

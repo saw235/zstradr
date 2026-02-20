@@ -28,6 +28,7 @@ library
   build-depends:
     base          >= 4.14 && < 5,
     zstradr-core,
+    zstradr-data,
     aeson         >= 2.0,
     containers    >= 0.6,
     vector        >= 0.12,

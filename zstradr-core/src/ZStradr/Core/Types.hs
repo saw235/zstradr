@@ -20,6 +20,8 @@ module ZStradr.Core.Types
     -- * Portfolio
   , Portfolio(..)
   , emptyPortfolio
+    -- * Trade
+  , Trade(..)
   ) where
 
 import           Data.Aeson      (FromJSON, FromJSONKey, ToJSON, ToJSONKey)
@@ -123,3 +125,15 @@ data Portfolio = Portfolio
 -- | Create an empty portfolio with the given initial cash balance.
 emptyPortfolio :: Double -> Portfolio
 emptyPortfolio initialCash = Portfolio initialCash mempty 0.0
+
+-- ---------------------------------------------------------------------------
+-- Trade (completed round-trip)
+
+-- | A completed round-trip trade consisting of an entry fill, an exit fill,
+-- and the realized profit/loss for the trade.
+data Trade = Trade
+  { tradeSymbol       :: Symbol
+  , tradeEntryFill    :: Fill
+  , tradeExitFill     :: Fill
+  , tradeRealizedPnL  :: Double
+  } deriving (Show, Eq, Generic, FromJSON, ToJSON)
