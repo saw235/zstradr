@@ -44,4 +44,6 @@ test-suite zstradr-core-tests
     , hspec      >= 2.7
     , text       >= 1.2
   default-language: Haskell2010
+  default-extensions:
+    OverloadedStrings
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
