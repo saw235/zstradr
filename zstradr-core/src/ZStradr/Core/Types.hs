@@ -1,6 +1,8 @@
-{-# LANGUAGE DeriveAnyClass    #-}
-{-# LANGUAGE DeriveGeneric     #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveAnyClass            #-}
+{-# LANGUAGE DeriveGeneric             #-}
+{-# LANGUAGE DerivingStrategies        #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE OverloadedStrings         #-}
 
 -- | Core domain types for the ZStradr trading framework.
 --
@@ -27,7 +29,7 @@ module ZStradr.Core.Types
   ) where
 
 import           Control.DeepSeq  (NFData)
-import           Data.Aeson       (FromJSON, ToJSON)
+import           Data.Aeson       (FromJSON, FromJSONKey, ToJSON, ToJSONKey)
 import           Data.Map.Strict  (Map)
 import           Data.Text        (Text)
 import           GHC.Generics     (Generic)
@@ -37,11 +39,13 @@ import           GHC.Generics     (Generic)
 
 -- | A stock ticker symbol (e.g. @"AAPL"@, @"MSFT"@).
 newtype Symbol = Symbol { unSymbol :: Text }
-  deriving (Show, Eq, Ord, Generic, NFData, FromJSON, ToJSON)
+  deriving stock    (Show, Eq, Ord, Generic)
+  deriving newtype  (NFData, FromJSON, ToJSON, FromJSONKey, ToJSONKey)
 
 -- | Unix epoch timestamp in milliseconds.
 newtype Timestamp = Timestamp { unTimestamp :: Integer }
-  deriving (Show, Eq, Ord, Generic, NFData, FromJSON, ToJSON)
+  deriving stock   (Show, Eq, Ord, Generic)
+  deriving newtype (NFData, FromJSON, ToJSON)
 
 -- ---------------------------------------------------------------------------
 -- Market data
