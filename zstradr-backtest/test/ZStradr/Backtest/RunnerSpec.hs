@@ -1,4 +1,5 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NumericUnderscores #-}
+{-# LANGUAGE OverloadedStrings  #-}
 -- | Tests for the backtesting runner using a synthetic SPY data set.
 module ZStradr.Backtest.RunnerSpec (spec) where
 

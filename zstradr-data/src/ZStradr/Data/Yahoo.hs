@@ -22,7 +22,6 @@ import qualified Data.ByteString.Lazy      as BL
 import           Data.Aeson                (FromJSON, ToJSON, Value (..))
 import qualified Data.Aeson                as Aeson
 import qualified Data.Aeson.Types          as AT
-import           Data.Text                 (Text)
 import qualified Data.Text                 as T
 import           GHC.Generics              (Generic)
 import           Network.HTTP.Client
